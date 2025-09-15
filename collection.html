@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Our Works</title>
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+
+  .section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+  }
+
+  .top-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #000000;
+  }
+
+  .top-text strong {
+    color: #ad9544;
+  }
+
+  .top-text .left {
+    max-width: 250px;
+    line-height: 1.5;
+  }
+
+  .top-text .right {
+    max-width: 300px;
+    line-height: 1.5;
+  }
+
+  .gallery {
+    background: #f8eebf;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .gallery h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #ad9544;
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    perspective: 1000px;
+    transition: transform 0.5s ease;
+  }
+
+  .card {
+    border-radius: 20px;
+    background: #fff;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid #f5f3f3;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .img-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  /* Taille image principale */
+  .card.main .img-container {
+    width: 240px;
+    height: 320px;
+  }
+
+  /* Taille images gauche/droite */
+  .card.left .img-container,
+  .card.right .img-container {
+    width: 200px;
+    height: 280px;
+  }
+
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Overlay */
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    text-align: justify;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .img-container:hover .overlay {
+    opacity: 1;
+  }
+
+  .overlay p {
+    font-size: 15px;
+    margin: 0 0 15px 0;
+    max-height: 160px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.5;
+    width: 100%;
+  }
+
+  .overlay p::-webkit-scrollbar {
+    width: 6px;
+  }
+  .overlay p::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 3px;
+  }
+
+.visit-btn {
+  background-color: #ad9544;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-decoration: none; /* enlève le soulignement */
+  display: inline-block;
+}
+
+
+  .visit-btn:hover {
+    background-color: #8c7635;
+  }
+
+  .card h3 {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #ad9544;
+  }
+
+  .card.main {
+    transform: translateY(50px);
+    transition: transform 0.4s ease;
+  }
+
+  .card.main:hover {
+    transform: translateY(0) rotateY(0deg) scale(1);
+  }
+
+  .left {
+    transform: rotateY(20deg) scale(0.9);
+  }
+  .right {
+    transform: rotateY(-20deg) scale(0.9);
+  }
+
+  .card:hover {
+    transform: rotateY(0deg) scale(1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  @media (max-width: 900px) {
+    .cards {
+      flex-direction: column;
+      align-items: center;
+      perspective: none;
+    }
+    .left, .right {
+      transform: none;
+    }
+    .card.main {
+      transform: none;
+    }
+    .overlay p {
+      max-height: none;
+      overflow-y: visible;
+    }
+  }/* Style boutons */
+  .btn {
+    font-size: 24px;
+    background: none;
+    border: 2px solid #ad9544;
+    color: #ad9544;
+    padding: 6px 14px;
+    margin: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 50px; /* flèches descendues de 10px */
+  }
+  .btn:hover {
+    background-color: #ad9544;
+    color: white;
+  }
+  
+</style>
+</head>
+<body>
+
+<section class="section">
+
+  <div class="top-text">
+    <div class="left">
+      <strong>View our latest works</strong><br />
+      Discover our diverse collections — from elegant women’s wear and classic men’s styles to adorable baby outfits, timeless traditional clothing, and unique accessories. Each piece is crafted to celebrate your style and individuality  </div>
+    <div class="right">
+     We’ve reimagined the way you explore our collections — offering a fresh, distinctive style that makes every visit more inspiring than ever.
+    </div>
+  </div>
+
+  <div class="gallery">
+    <h1>OUR WORKS</h1>
+    <div class="cards" id="cardsContainer">
+
+      <div class="card left">
+        <div class="img-container">
+          <img src="figures/tr.jpg" alt="" />
+          <div class="overlay">
+             <p>This category is especially for traditional clothes. Discover timeless designs with authentic touches.</p>
+             <a href="pro.html" class="visit-btn">Visit Collection</a>
+
+          </div>
+        </div>
+        <h3>Traditional clothes</h3>
+      </div>
+
+      <div class="card left">
+        <div class="img-container">
+          <img src="figures/bb.jpg" alt="" />
+          <div class="overlay">
+           <p>This category is especially for baby clothes. Find the cutest and safest outfits for your little ones.</p>
+           <a href="pro.html" class="visit-btn">Visit Collection</a>
+
+          </div>
+        </div>
+        <h3>Baby clothes</h3>
+      </div>
+
+      <div class="card main">
+        <div class="img-container">
+          <img src="figures/fm.jpg" alt="" />
+          <div class="overlay">
+           <p>This category is especially for women's clothing. Explore the best styles tailored just for you.</p>
+               <a href="pro.html" class="visit-btn">Visit Collection</a>
+          </div>
+        </div>
+        <h3>Women's clothing</h3>
+      </div>
+
+      <div class="card right">
+        <div class="img-container">
+          <img src="figures/ac.jpg" alt="" />
+          <div class="overlay">
+            <p>This category is especially for accessories. Complement your look with our exclusive selections.</p>
+              <a href="pro.html" class="visit-btn">Visit Collection</a>
+          </div>
+        </div>
+        <h3>Accessories</h3>
+      </div>
+
+      <div class="card right">
+        <div class="img-container">
+          <img src="figures/téléchargement.png" alt="" />
+          <div class="overlay">
+            <p>This category is especially for men's clothing. Explore the best styles tailored just for you.</p>
+              <a href="pro.html" class="visit-btn">Visit Collection</a>
+          </div>
+        </div>
+        <h3>Men's clothing</h3>
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn" id="btnLeft">&#8592;</button>
+      <button class="btn" id="btnRight">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const cardsContainer = document.getElementById('cardsContainer');
+  const btnLeft = document.getElementById('btnLeft');
+  const btnRight = document.getElementById('btnRight');
+
+  const classOrder = ['left', 'left', 'main', 'right', 'right'];
+
+  let cards = Array.from(cardsContainer.children);
+
+  function updateClasses() {
+    cards.forEach(card => {
+      card.classList.remove('left', 'main', 'right');
+    });
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].classList.add(classOrder[i]);
+    }
+  }
+
+  updateClasses();
+
+  btnRight.addEventListener('click', () => {
+    const last = cards.pop();
+    cards.unshift(last);
+    updateCardsInDOM();
+    updateClasses();
+  });
+  btnLeft.addEventListener('click', () => {
+    const first = cards.shift();
+    cards.push(first);
+    updateCardsInDOM();
+    updateClasses();
+  });
+
+  function updateCardsInDOM() {
+    cardsContainer.innerHTML = '';
+    cards.forEach(card => {
+      cardsContainer.appendChild(card);
+    });
+  }
+</script>
+
+<footer style="text-align:center; padding:10px; background:#ffeec0; color:rgb(15, 13, 13);">
+  © 2025 Your Brand. All rights reserved.  
+  <div>
+    <a href="#" style="color:rgb(224, 131, 131); margin:0 5px;">Instagram</a> | 
+    <a href="#" style="color:rgb(216, 137, 137); margin:0 5px;">Facebook</a>
+  </div>
+</footer>
+
+</body>
+</html>

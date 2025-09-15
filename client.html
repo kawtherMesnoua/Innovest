@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="client.css">
+    <title>Prilist | Login & Registration</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="home.html"><img src="/figures/logo.png" alt="logo"></a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="home.html" class="link ">Home</a></li>
+                    <li><a href="collection.html" class="link">Collection</a></li>
+                    <li><a href="account.html" class="link">Account</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+                <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+            </div>
+            <div class="nav-menu-btn" onclick="toggleMenu()">
+                <i class="bx bx-menu"></i>
+            </div>
+        </nav>
+
+        <div class="form-box">
+            <div class="login-container" id="login">
+                <div class="top">
+                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                    <header>Login</header>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Username or Email">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Sign In">
+                </div>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a href="#">Forgot password?</a></label>
+                    </div>
+                </div>
+            </div>
+            <div class="register-container" id="register">
+                <div class="top">
+                    <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                    <header>Sign Up</header>
+                </div>
+                <div class="two-forms">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Firstname">
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Lastname">
+                        <i class="bx bx-user"></i>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Email">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+               <div class="input-box">
+                   <input type="password" class="input-field" placeholder="Confirm Password" id="confirmPassword">
+                   <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Register">
+                </div>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="register-check">
+                        <label for="register-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a href="#">Terms & conditions</a></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+        
+        var a = document.getElementById("loginBtn");
+        var b = document.getElementById("registerBtn");
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+
+        function login() {
+            x.style.left = "4px";
+            y.style.right = "-520px";
+            a.className += " white-btn";
+            b.className = "btn";
+            x.style.opacity = 1;
+            y.style.opacity = 0;
+        }
+
+        function register() {
+             // Récupération des mots de passe
+           const password = document.querySelector('#register .input-field[type="password"]').value;
+           const confirmPassword = document.getElementById('confirmPassword').value;
+    
+             // Validation
+           if(password !== confirmPassword) {
+               alert("Passwords don't match!");
+               return false;
+            }
+    
+            x.style.left = "-510px";
+            y.style.right = "5px";
+            a.className = "btn";
+            b.className += " white-btn";
+            x.style.opacity = 0;
+            y.style.opacity = 1;
+        }
+   
+    </script>
+    <style>
+        /* style.css */
+
+/* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+
+
+body {
+    background: url(figures/homePnv.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    min-height: 110vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 110vh;
+    background: rgba(39, 39, 39, 0.4);
+}
+
+/* Navigation Style */
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding: 0 40px;
+    z-index: 100;
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.nav-logo img {
+    height: 200px; /* Augmenté de 50px à 80px */
+    transition: all 0.3s ease; /* Ajout d'une transition pour un effet fluide */
+}
+
+/* Pour s'assurer que la navbar s'adapte à la nouvelle taille */
+.nav {
+    height: 100px; /* Augmenté de 80px à 100px */
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+
+.nav-menu .link {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-menu .link:hover,
+.nav-menu .active {
+    color: #d4af37;
+}
+
+.nav-menu .link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.nav-menu .link:hover::after {
+    width: 100%;
+}
+
+.nav-button .btn {
+    width: 120px;
+    height: 40px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.btn.white-btn {
+    background: rgba(255, 255, 255, 0.7);
+    color: #333;
+}
+
+.nav-menu-btn {
+    display: none;
+}
+
+/* Form Box Styles */
+.form-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 530px;
+    height: 450px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.login-container {
+    position: absolute;
+    left: 4px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+
+.register-container {
+    position: absolute;
+    right: -520px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+
+.top span {
+    color: #fff;
+    font-size: small;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top span a {
+    font-weight: 500;
+    color:#d4af37;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+header {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0 30px 0;
+}
+
+.two-forms {
+    display: flex;
+    gap: 10px;
+}
+
+.input-field {
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+
+.input-field:hover, 
+.input-field:focus {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: relative;
+    top: -30px;
+    left: 17px;
+    color: #fff;
+}
+
+.submit {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.submit:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.two-col {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 10px;
+}
+
+.two-col .one {
+    display: flex;
+    gap: 5px;
+}
+
+.two label a {
+    text-decoration: none;
+    color: #d4af37;
+}
+
+.two label a:hover {
+    text-decoration: underline;
+}
+.register-container .two-col {
+    margin-top: 1cm; /* espace entre le bouton et les phrases */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav {
+        padding: 0 20px;
+        background: rgba(0, 0, 0, 0.7);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px 0;
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.5s ease;
+    }
+    
+    .nav-menu.active {
+        clip-path: circle(150% at 100% 0);
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .nav-menu-btn {
+        display: block;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    .nav-button {
+        display: none;
+    }
+    
+    .form-box {
+        width: 100%;
+        height: 500px;
+    }
+    
+    .register-container, 
+    .login-container {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .register-container .two-forms {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+@media (max-width: 768px) {
+    .nav-logo img {
+        height: 70px; /* Taille légèrement réduite sur mobile */
+    }
+    
+    .nav {
+        height: 90px; /* Ajustement pour mobile */
+    }
+}
+.register-container .submit {
+    width: 100%; /* prend toute la largeur du formulaire */
+    box-sizing: border-box; /* évite de dépasser */
+}
+.register-container .input-box {
+    margin-bottom: -15px; /* espace entre chaque champ */
+}
+
+    </style>
+</body>
+</html>

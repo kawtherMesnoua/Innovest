@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Collection</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 20px 0;
+        color: #333;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .box {
+        position: relative;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .box:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .sizes {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(255,255,255,0.9);
+        padding: 5px 8px;
+        border-radius: 5px;
+        display: flex;
+        gap: 5px;
+    }
+
+    .size {
+        font-size: 0.8rem;
+        background: #eee;
+        padding: 3px 6px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .size:hover,
+    .size.selected {
+        background: #ddd;
+    }
+
+    .icons {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+        background: rgba(255,255,255,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+        font-size: 1rem;
+    }
+
+    .icon:hover {
+        background: #ddd;
+    }
+
+    .icon.active {
+        background: #ff4081;
+        color: white;
+    }
+
+    .icon.heart.active {
+        background: red;
+        color: white;
+    }
+     .description {
+        padding: 10px;
+        font-size: 0.9rem;
+        color: #555;
+        border-top: 1px solid #eee;
+        background: #fafafa;
+    }
+</style>
+</head>
+<body>
+
+<h1>Our Latest Collections</h1>
+
+<div class="container">
+    <!-- 10 produits -->
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc1.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc2.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc3.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc1.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc5.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/téléchargement.png" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/tr.jpg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc3.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc5.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+
+    <div class="box">
+        <div class="sizes">
+            <div class="size">S</div>
+            <div class="size">M</div>
+            <div class="size">L</div>
+            <div class="size">XL</div>
+            <div class="size">XXL</div>
+        </div>
+        <div class="icons">
+            <div class="icon heart">♥️</div>
+            <div class="icon plus">+</div>
+        </div>
+        <img src="/figures/collc1.jpeg" class="product-img" alt="Product">
+        <div class="description">Casual men's shirt with modern cut and breathable material.</div>
+    </div>
+</div>
+<script>
+    // Coeur
+    document.querySelectorAll('.heart').forEach(heart => {
+        heart.addEventListener('click', () => {
+            heart.classList.toggle('active');
+        });
+    });
+
+    // Plus
+    document.querySelectorAll('.plus').forEach(plus => {
+        plus.addEventListener('click', () => {
+            plus.classList.toggle('active');
+        });
+    });
+
+    // Sélection de taille
+    document.querySelectorAll('.sizes').forEach(sizes => {
+        sizes.querySelectorAll('.size').forEach(size => {
+            size.addEventListener('click', () => {
+                sizes.querySelectorAll('.size').forEach(s => s.classList.remove('selected'));
+                size.classList.add('selected');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

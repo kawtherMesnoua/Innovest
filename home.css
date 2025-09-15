@@ -1,0 +1,861 @@
+/* Style général pour part1 */
+.part1 {
+    position: relative;
+    width: 100%;
+    height:118vh; /* Prend toute la hauteur de l'écran */
+    overflow: hidden;
+}
+
+/* Style pour l'image de fond */
+.part1 > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Style pour sous-part-1 (le cadre) */
+.part1-1 {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.1); /* Très transparent */
+    width: 90%;
+    max-width: 970px;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure légère */
+    backdrop-filter: blur(3px); /* Effet de flou plus prononcé */
+}
+
+
+/* Style pour le logo */
+.part1-1 img[alt="logo"] {
+    width: 230px;
+    position: absolute;  /* Permet un positionnement libre */
+    top: -70px;          /* Distance depuis le haut */
+    left: -5px;         /* Distance depuis la gauche */
+    z-index: 10;        /* S'assure que le logo est au-dessus des autres éléments */
+    margin-bottom: 0;   /* On retire la marge précédente */
+}
+
+/* Style pour le menu */
+/* Conteneur du menu */
+.menu-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 40px 0;
+}
+
+/* Menu principal */
+.main-menu {
+background-color: white;
+  display: inline-flex; /* S'adapte au contenu */
+  gap: 10px;
+  padding: 20px 20px;
+  list-style: none;
+  margin: 0;
+  margin-left: 350px; /* Déplace vers la gauche */
+  margin-top: -60px; /* Déplace vers la haut*/
+  
+  /* Bordures */
+  border-top: 1px solid rgba(210, 207, 202, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+
+  /* Effet de transition */
+  transition: all 0.3s ease;
+}
+
+/* Éléments du menu */
+.main-menu li {
+  position: relative;
+}
+
+/* Liens du menu */
+.main-menu a {
+  text-decoration: none;
+  color: rgb(29, 11, 105);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+/* Effet de survol */
+.main-menu a:hover {
+  color: #d4af37; /* Couleur dorée */
+}
+
+
+/* Animation de la barre inférieure */
+.main-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #d4af37;
+  transition: width 0.3s ease;
+}
+
+.main-menu a:hover::after {
+  width: 100%;
+}
+
+/* Version responsive */
+@media (max-width: 768px) {
+  .main-menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 15px 30px;
+  }
+  
+  .main-menu a::after {
+    bottom: -5px;
+  }
+}
+
+/* Conteneur des icônes */
+.icons {
+    position: absolute;
+    top: 30px; /* Ajustez pour aligner avec le logo */
+    right: 30px; /* Distance depuis la droite */
+    display: flex;
+    gap: 6px; /* Espace entre les icônes */
+    z-index: 10;
+}
+
+/* Style de base des icônes */
+.icons i {
+    font-size: 24px; /* Taille augmentée */
+    color: rgb(29, 11, 105); /* Couleur par défaut */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Effet au survol */
+.icons i:hover {
+    transform: scale(1.2); /* Légère augmentation */
+    color:#d4af37; /* Couleur dorée au survol */
+}
+
+/* Mode sombre */
+.dark-mode .icons i {
+    color: #fff; /* Blanc en mode sombre */
+}
+
+.dark-mode .icons i:hover {
+    color: #d4af37; /* Doré plus clair au survol */
+}
+
+/* Icône spécifique pour la langue */
+.bx-globe {
+    position: relative;
+    font-size: 22px; /* Ajustement taille */
+}
+
+/* Animation rotation globe au survol */
+.bx-globe:hover {
+    animation: rotateGlobe 2s linear infinite;
+}
+
+@keyframes rotateGlobe {
+    from { transform: rotate(0deg) scale(1.2); }
+    to { transform: rotate(360deg) scale(1.2); }
+}
+
+/* Animation lune/soleil */
+.fa-moon:hover {
+    animation: moonPulse 1.5s ease infinite alternate;
+}
+
+@keyframes moonPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.3); }
+}
+
+/* Style pour le titre principal */
+.part1-1 h1 {
+    font-size: 3.5rem;
+    text-align: left;
+    margin-bottom: 20px;
+    color: rgb(22, 6, 92);
+    font-weight: 600;
+}
+.part1-1 h2 {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 20px;
+    color: rgb(22, 6, 92);
+    font-weight: 600;
+}
+
+/* Style pour le sous-titre */
+.part1-1 h3 {
+    font-size: 1.5rem;
+    text-align: left;
+    color: rgb(5, 2, 19);
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+/* Style pour le paragraphe */
+.part1-1 p {
+    text-align: left;
+    color: #343232;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 0 20px 0; /* Modification ici : retire 'auto' pour l'alignement à gauche */
+    /* Ajoutez éventuellement une marge gauche si nécessaire */
+    /* margin-left: 20px; */
+}
+
+/* Style pour les boutons */
+.part1-1 button {
+    display: inline-block;
+    margin: 0 0 20px 0;
+    padding: 12px 30px;
+    background-color: #ad9544;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden; /* Cache le débordement de l'effet */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Effet de flash élégant au survol */
+.part1-1 button:hover {
+    background-color: #d4af37;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(183, 141, 101, 0.4);
+}
+
+/* Animation de flash */
+.part1-1 button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+              transparent, 
+              rgba(255, 255, 255, 0.4), 
+              transparent);
+    transition: none;
+}
+
+.part1-1 button:hover::after {
+    left: 100%;
+    transition: all 0.6s ease-in-out;
+}
+/* Style pour sous-part-2 */
+.part1-2 {
+    position: absolute;
+    right: 40px; /* Position depuis la droite */
+    top: 80%; /* Centrage vertical */
+    transform: translateY(-50%);
+    width: 340px; /* Largeur réduite */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 3;
+}
+
+/* Image à gauche */
+.part1-2 img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    align-self: center; /* Centre verticalement */
+}
+
+/* Contenu texte à droite */
+.part1-2 > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.part1-2 h3 {
+    color: rgb(22, 6, 92);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.part1-2 button {
+    background-color:#ad9544;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all 0.3s;
+}
+
+.part1-2 button:hover {
+    background-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(183, 141, 101, 0.3);
+}
+/************************part 2 ************************************/
+
+.part2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.part2 > div {
+    flex: 1;
+    min-width: 220px;
+    background: #f8f4ee;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.part2 > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    background: #f1e9e0;
+}
+
+.part2 i {
+    font-size: 2rem;
+    color:  rgb(22, 6, 92); /* Couleur normale */
+    margin-bottom: 20px;
+    background: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease, transform 0.3s ease; /* Animation fluide */
+}
+
+/* Changement de couleur au survol */
+.part2 > div:hover i {
+    color:#d4af37; /* Nouvelle couleur au survol */
+    transform: scale(1.1); /* Légère augmentation de taille */
+}
+
+.part2 h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: rgb(22, 6, 92);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.part2 h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #d4af37;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.part2 p {
+    font-family: 'Montserrat', sans-serif;
+    color: #2c2727;
+    line-height: 1.6;
+    font-size: 0.85rem;
+    max-width: 90%;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .part2 > div {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .part2 > div {
+        flex: 0 0 100%;
+    }
+}
+
+/***********************************part 3**************************************************/
+.part3 {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: start; /* Alignement en haut */
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+/* Image de gauche - taille augmentée en hauteur */
+.part3 img:first-child {
+    width: 100%;
+    max-width: 280px;
+    height: 400px; /* Hauteur fixe augmentée */
+    object-fit: cover; /* Conserve les proportions */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    align-self: center;
+    justify-self: center;
+}
+
+/* Contenu central */
+.part3 > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.part3 h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: rgb(22, 6, 92);
+    margin-bottom: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.part3 p {
+    font-family: 'Montserrat', sans-serif;
+    color:  #2c2727;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+.highlight {
+    font-weight: 600;
+    color:rgb(22, 6, 92); /* Couleur dorée pour correspondre à votre thème */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.part3 h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color:  #d4af37;
+    margin: 10px 0 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Boutons côte à côte et plus petits */
+.part3 .buttons {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+}
+
+.part3 button {
+    background-color:#ad9544;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Taille réduite */
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem; /* Texte plus petit */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 150px; /* Largeur minimale */
+}
+
+.part3 button:hover {
+    background-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(193, 154, 107, 0.3);
+}
+
+/* Image de droite - plus petite et décalée vers le bas */
+.part3 img:last-child {
+    width: 100%;
+    max-width: 200px; /* Largeur réduite */
+    height: 250px; /* Hauteur réduite */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    justify-self: center;
+    align-self: end; /* Décalage vers le bas */
+    margin-bottom: 5px; /* Espace supplémentaire en bas */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .part3 {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .part3 img:first-child {
+        height: 350px;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .part3 > div {
+        order: 2;
+    }
+    
+    .part3 img:last-child {
+        order: 3;
+        height: 250px;
+        max-width: 200px;
+        margin: 30px auto 0;
+        align-self: center;
+    }
+    
+    .part3 .buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    .part3 h1 {
+        font-size: 1.7rem;
+    }
+    
+    .part3 button {
+        padding: 8px 15px;
+        min-width: 120px;
+        font-size: 0.8rem;
+    }
+}
+/***************************************part4****************************************/
+/* CSS existant à conserver */
+.part4 {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 40px;
+    background: #f8f4ee;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+}
+
+.part4 h1{
+    color: rgb(22, 6, 92);
+}
+
+.part4{
+     color:  #2c2727;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.product-card p {
+    padding: 12px;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    background: #fff;
+}
+
+.part4 button {
+    background-color:#ad9544;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+.part4 button:hover {
+    background-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(193, 154, 107, 0.3);
+}
+
+/* Modifications pour la deuxième ligne avec 3 images */
+.second-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.second-row .product-card img {
+    height: 160px; /* Même hauteur que la première ligne */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .part4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .products-grid,
+    .second-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .products-grid,
+    .second-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .part4 h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/***************************************part5****************************************/
+/* Style pour la section principale */
+.part5 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    align-items: start; /* Changé de 'center' à 'start' */
+    position: relative;
+}
+
+/* Style premium pour la vidéo - Modifié pour monter */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2%); /* Changé de +15% à -10% pour monter */
+    margin-top: 160px; /* Compensation supplémentaire */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Effet hover ajusté */
+.video-container:hover {
+    transform: translateY(-12%) scale(1.02); /* Ajusté en conséquence */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Style du formulaire - inchangé */
+.part5-5 {
+    background: #f8f4ee;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    height: fit-content;
+    position: relative;
+    z-index: 1;
+    margin-top: 30px; /* Compensation pour l'alignement */
+}
+
+/* Responsive ajusté */
+@media (max-width: 992px) {
+    .part5 {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-container {
+        transform: none;
+        margin: 0 0 30px 0;
+    }
+    
+    .video-container:hover {
+        transform: scale(1.02);
+    }
+    
+    .part5-5 {
+        margin-top: 0;
+    }
+}
+.part5-5 h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; /* Réduit */
+    color:  rgb(22, 6, 92);
+    margin-bottom: 20px; /* Réduit */
+    text-align: center;
+    position: relative;
+}
+
+.part5-5 h1::after {
+    content: '';
+    display: block;
+    width: 50px; /* Réduit */
+    height: 2px; /* Réduit */
+    background: #d4af37;
+    margin: 12px auto 0; /* Réduit */
+}
+
+/* Éléments de formulaire compacts */
+.form-group {
+    margin-bottom: 10px; /* Réduit */
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem; /* Réduit */
+    color: #162362;
+    margin-bottom: 6px; /* Réduit */
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px; /* Réduit */
+    border: 1px solid #ddd;
+    border-radius: 5px; /* Légèrement réduit */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem; /* Réduit */
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.form-group textarea {
+    min-height: 90px; /* Réduit */
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color:#ad9544;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Réduit */
+    border-radius: 25px; /* Légèrement réduit */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem; /* Réduit */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 10px; /* Ajouté */
+}
+
+/* Effets au survol - inchangés */
+.part5 video:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:hover {
+    background-color: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(193, 154, 107, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .part5 {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .part5 video {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .part5-5 {
+        padding: 20px;
+    }
+    
+    .part5-5 h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 8px 10px;
+    }
+}

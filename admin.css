@@ -1,0 +1,349 @@
+/* style.css */
+
+/* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+body {
+    background: url(figures/homePnv.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    min-height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 110vh;
+    background: rgba(39, 39, 39, 0.4);
+}
+
+/* Navigation Style */
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    padding: 0 40px;
+    z-index: 100;
+}
+
+.nav-logo img {
+    height: 50px;
+}
+
+.nav-logo img {
+    height: 200px; /* Augmenté de 50px à 80px */
+    transition: all 0.3s ease; /* Ajout d'une transition pour un effet fluide */
+}
+
+/* Pour s'assurer que la navbar s'adapte à la nouvelle taille */
+.nav {
+    height: 100px; /* Augmenté de 80px à 100px */
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+
+.nav-menu .link {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-menu .link:hover,
+.nav-menu .active {
+    color: #d4af37;
+}
+
+.nav-menu .link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d4af37;
+    transition: width 0.3s ease;
+}
+
+.nav-menu .link:hover::after {
+    width: 100%;
+}
+
+.nav-button .btn {
+    width: 120px;
+    height: 40px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.btn.white-btn {
+    background: rgba(255, 255, 255, 0.7);
+    color: #333;
+}
+
+.nav-menu-btn {
+    display: none;
+}
+
+/* Form Box Styles */
+.form-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 512px;
+    height: 420px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.login-container {
+    position: absolute;
+    left: 4px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+
+.register-container {
+    position: absolute;
+    right: -520px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+
+.top span {
+    color: #fff;
+    font-size: small;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.top span a {
+    font-weight: 500;
+    color: #fff;
+    margin-left: 5px;
+}
+
+header {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0 30px 0;
+}
+
+.two-forms {
+    display: flex;
+    gap: 10px;
+}
+
+.input-field {
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+
+.input-field:hover, 
+.input-field:focus {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: relative;
+    top: -35px;
+    left: 17px;
+    color: #fff;
+}
+
+.submit {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.submit:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.two-col {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 10px;
+}
+
+.two-col .one {
+    display: flex;
+    gap: 5px;
+}
+
+.two label a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.two label a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav {
+        padding: 0 20px;
+        background: rgba(0, 0, 0, 0.7);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px 0;
+        clip-path: circle(0% at 100% 0);
+        transition: clip-path 0.5s ease;
+    }
+    
+    .nav-menu.active {
+        clip-path: circle(150% at 100% 0);
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .nav-menu-btn {
+        display: block;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    .nav-button {
+        display: none;
+    }
+    
+    .form-box {
+        width: 100%;
+        height: 500px;
+    }
+    
+    .register-container, 
+    .login-container {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .register-container .two-forms {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+@media (max-width: 768px) {
+    .nav-logo img {
+        height: 70px; /* Taille légèrement réduite sur mobile */
+    }
+    
+    .nav {
+        height: 90px; /* Ajustement pour mobile */
+    }
+}
+
+/* Ajoutez ces styles à votre fichier CSS */
+
+/* Style pour le sélecteur de département */
+.input-box select.input-field {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-left: 45px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+.input-box select.input-field option {
+    background: #333;
+    color: #fff;
+}
+
+/* Icônes supplémentaires */
+.bx-id-card:before {
+    content: "\e9a3";
+}
+.bx-buildings:before {
+    content: "\eafd";
+}
+
+/* Style pour les champs requis */
+.input-field:required:invalid {
+    border: 1px solid rgba(255, 100, 100, 0.5);
+}
