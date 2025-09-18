@@ -136,24 +136,13 @@
             margin-top: 50px;
         }
 
-        .login-container, .register-container {
+        .login-container {
             position: absolute;
             width: 500px;
             display: flex;
             flex-direction: column;
             padding: 30px;
-            transition: .5s ease-in-out;
-            background: transparent; /* Suppression du fond noir */
-        }
-
-        .login-container {
-            left: 4px;
-            opacity: 1;
-        }
-
-        .register-container {
-            right: -520px;
-            opacity: 0;
+            background: transparent;
         }
 
         .top span {
@@ -176,18 +165,6 @@
             font-size: 30px;
             text-align: center;
             padding: 10px 0 30px 0;
-        }
-
-        /* Modification pour afficher deux champs côte à côte */
-        .two-fields {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .two-fields .input-box {
-            flex: 1;
-            margin-bottom: 0;
         }
 
         .input-box {
@@ -268,22 +245,6 @@
             text-decoration: underline;
         }
 
-        /* Style pour le sélecteur de département */
-        .input-box select.input-field {
-            appearance: none;
-            -webkit-appearance: none;
-            padding-left: 45px;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat;
-            background-position: right 15px center;
-            background-size: 20px;
-        }
-
-        .input-box select.input-field option {
-            background: #333;
-            color: #fff;
-        }
-
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav {
@@ -329,7 +290,6 @@
                 padding: 20px;
             }
             
-            .register-container, 
             .login-container {
                 width: 100%;
                 padding: 20px;
@@ -337,12 +297,6 @@
             
             .nav-logo img {
                 height: 70px;
-            }
-
-            /* Adaptation pour mobile */
-            .two-fields {
-                flex-direction: column;
-                gap: 20px;
             }
         }
     </style>
@@ -362,8 +316,7 @@
                 </ul>
             </div>
             <div class="nav-button">
-                <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
-                <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+                <button class="btn white-btn">Sign In</button>
             </div>
             <div class="nav-menu-btn" onclick="toggleMenu()">
                 <i class="bx bx-menu"></i>
@@ -374,7 +327,6 @@
             <!-- Admin Login Form -->
             <div class="login-container" id="login">
                 <div class="top">
-                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
                     <header>Admin Login</header>
                 </div>
                 <div class="input-box">
@@ -398,46 +350,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Admin Registration Form -->
-            <div class="register-container" id="register">
-                <div class="top">
-                    <span>Already have an account? <a href="#" onclick="login()">Sign In</a></span>
-                    <header>Create Account</header>
-                </div>
-                <div class="two-fields">
-                    <div class="input-box">
-                        <input type="text" class="input-field" placeholder="Full Name" required>
-                        <i class="bx bx-user"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="email" class="input-field" placeholder="Email" required>
-                        <i class="bx bx-envelope"></i>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Admin ID" required>
-                    <i class="bx bx-id-card"></i>
-                </div>
-                <div class="two-fields">
-                    <div class="input-box">
-                        <input type="password" class="input-field" placeholder="Password" required>
-                        <i class="bx bx-lock-alt"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="password" class="input-field" placeholder="Confirm Password" id="confirmPassword" required>
-                        <i class="bx bx-lock-alt"></i>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <input type="submit" class="submit" value="Register" onclick="validateRegister()">
-                </div>
-                <div class="two-col">
-                    <div class="two">
-                        <label><a href="#">Terms & Conditions</a></label>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -446,32 +358,6 @@
         function toggleMenu() {
             const navMenu = document.getElementById('navMenu');
             navMenu.classList.toggle('active');
-        }
-        
-        // Form Toggle Variables
-        const loginBtn = document.getElementById("loginBtn");
-        const registerBtn = document.getElementById("registerBtn");
-        const loginForm = document.getElementById("login");
-        const registerForm = document.getElementById("register");
-
-        // Show Login Form
-        function login() {
-            loginForm.style.left = "4px";
-            registerForm.style.right = "-520px";
-            loginBtn.classList.add("white-btn");
-            registerBtn.classList.remove("white-btn");
-            loginForm.style.opacity = 1;
-            registerForm.style.opacity = 0;
-        }
-
-        // Show Register Form
-        function register() {
-            loginForm.style.left = "-510px";
-            registerForm.style.right = "5px";
-            loginBtn.classList.remove("white-btn");
-            registerBtn.classList.add("white-btn");
-            loginForm.style.opacity = 0;
-            registerForm.style.opacity = 1;
         }
 
         // Validate Login Form
@@ -488,43 +374,6 @@
             alert("Login successful (this would redirect in a real application)");
             return false;
         }
-
-        // Validate Register Form
-        function validateRegister() {
-            const inputs = document.querySelectorAll('#register .input-field');
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (input.required && !input.value) {
-                    input.style.border = "1px solid rgba(255, 100, 100, 0.5)";
-                    isValid = false;
-                } else {
-                    input.style.border = "none";
-                }
-            });
-
-            const password = document.querySelector('#register .input-field[type="password"]').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert("Passwords don't match!");
-                document.getElementById('confirmPassword').style.border = "1px solid rgba(255, 100, 100, 0.5)";
-                isValid = false;
-            }
-
-            if (!isValid) {
-                return false;
-            }
-
-            // Here you would typically make an AJAX call to submit the registration
-            alert("Registration request submitted for approval");
-            return false;
-        }
-
-        // Initialize with login form shown
-        window.onload = function() {
-            login();
-        };
     </script>
 </body>
 </html>

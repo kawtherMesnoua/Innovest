@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comparatif Agences de Livraison - Innovest</title>
+  <style>
+    :root {
+      --primary-color: rgb(54, 76, 124);
+      --secondary-color: #d4af37;
+      --accent-color: #ad9544;
+      --text-color: #2c2727;
+      --light-bg: #f8f4ee;
+      --white: #ffffff;
+      --dark-bg: #1a1a2e;
+      --accent-1: #8b5e3c;
+      --accent-2: #6b8e23;
+      --accent-3: #9370db;
+      --accent-4: #20b2aa;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color:var(--light-bg); color:var(--text-color); line-height:1.6; padding:15px; }
+    .container { max-width:1400px; margin:0 auto; background:var(--white); border-radius:8px; box-shadow:0 0 15px rgba(0,0,0,0.08); overflow:hidden; }
+    header { background:linear-gradient(135deg, var(--primary-color), var(--dark-bg)); color:var(--white); padding:1.5rem; text-align:center; }
+    header h1 { margin-bottom:.4rem; font-size:2rem; }
+    header p { font-size:1rem; max-width:800px; margin:0 auto; }
+    .agency-tabs { display:flex; flex-wrap:wrap; background:var(--light-bg); border-bottom:2px solid var(--secondary-color); }
+    .agency-tab { padding:0.8rem 1.2rem; cursor:pointer; font-weight:600; transition:all .3s ease; border-right:1px solid #ddd; }
+    .agency-tab:hover { background:#e8e2d6; }
+    .agency-tab.active { background:var(--white); border-top:3px solid; }
+    .agency-tab.yalidine.active { border-top-color:var(--accent-1); }
+    .agency-tab.zr-express.active { border-top-color:var(--accent-2); }
+    .agency-tab.dhd-express.active { border-top-color:var(--accent-3); }
+    .agency-tab.noest-express.active { border-top-color:var(--accent-4); }
+    .filters { padding:1rem; background:var(--light-bg); display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; align-items:center; }
+    .filter-group { flex:1; min-width:250px; }
+    label { display:block; margin-bottom:.4rem; font-weight:600; color:var(--primary-color); }
+    select, input { width:100%; padding:.6rem; border:1px solid #ddd; border-radius:4px; font-size:0.95rem; }
+    .agency-content { display:none; padding:1.2rem; }
+    .agency-content.active { display:block; }
+    .agency-header { display:flex; align-items:center; margin-bottom:1.2rem; padding-bottom:0.8rem; border-bottom:1px solid #eee; }
+    .agency-logo { width:100px; height:50px; background:#eee; margin-right:0.8rem; display:flex; align-items:center; justify-content:center; font-weight:bold; border-radius:4px; font-size:0.9rem; }
+    .yalidine-logo { background:#f5e6d3; color:var(--accent-1); }
+    .zr-express-logo { background:#e6f5d3; color:var(--accent-2); }
+    .dhd-express-logo { background:#e6d3f5; color:var(--accent-3); }
+    .noest-express-logo { background:#d3f5f5; color:var(--accent-4); }
+    .agency-info h2 { color:var(--primary-color); margin-bottom:.4rem; font-size:1.3rem; }
+    .agency-info p { font-size:0.9rem; }
+    .table-container { overflow-x:auto; margin-bottom:1.5rem; }
+    table { width:100%; border-collapse:collapse; margin:0.8rem 0; font-size:0.95rem; }
+    th, td { padding:0.8rem; text-align:left; border-bottom:1px solid #ddd; }
+    th { background-color:var(--primary-color); color:var(--white); position:sticky; top:0; }
+    tr:nth-child(even) { background-color:var(--light-bg); }
+    tr:hover { background-color:#edf2f7; }
+    .price { font-weight:600; }
+    .info-box { background-color:#edf2f7; border-left:4px solid var(--secondary-color); padding:1.2rem; margin:1.2rem; border-radius:4px; font-size:0.95rem; }
+    .info-box h3 { color:var(--primary-color); margin-bottom:.4rem; }
+    footer { padding:1rem; text-align:center; background:var(--light-bg); color:var(--text-color); font-size:0.9rem; }
+    @media (max-width:768px) {
+      .agency-tabs { flex-direction:column; }
+      .agency-tab { border-right:none; border-bottom:1px solid #ddd; }
+      th, td { padding:.6rem .4rem; }
+      header { padding:1.2rem 0.8rem; }
+      header h1 { font-size:1.6rem; }
+      .agency-header { flex-direction: column; align-items: flex-start; }
+      .agency-logo { margin-bottom: 0.5rem; }
+    }
+    /* Nouveaux styles ajoutés */
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "🚚";
+  position: absolute;
+  top: 10px;
+  right: 1100px;
+  font-size: 4rem;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.agency-tabs::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    var(--secondary-color) 10px,
+    var(--secondary-color) 20px
+  );
+  opacity: 0.7;
+}
+
+.agency-header::after {
+  content: "📦";
+  margin-left: 10px;
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+th::before {
+  content: "➡️";
+  margin-right: 5px;
+  font-size: 0.8em;
+}
+
+.price::after {
+  content: " DZD";
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+
+
+footer::before {
+  content: "⏱️ ";
+  margin-right: 5px;
+}
+
+/* Animation pour les logos des agences */
+.agency-logo {
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.agency-logo:hover {
+  transform: scale(1.05);
+}
+
+.agency-logo::after {
+  content: "▼";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secondary-color);
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.agency-header:hover .agency-logo::after {
+  opacity: 1;
+}
+
+/* Ajout d'icônes pour les types de livraison */
+thead th:nth-child(2)::before {
+  content: "🏠 ";
+}
+
+thead th:nth-child(3)::before {
+  content: "🏢 ";
+}
+
+/* Indicateur visuel pour la recherche */
+#wilaya-search {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%233d5da3' d='M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 20px;
+  padding-left: 40px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Comparatif des Agences de Livraison</h1>
+      <p>Retrouvez tous les tarifs de livraison par wilaya pour vos commandes Innovest</p>
+    </header>
+
+    <div class="agency-tabs">
+      <div class="agency-tab yalidine active" data-agency="yalidine">Yalidine</div>
+      <div class="agency-tab zr-express" data-agency="zr-express">Zr Express</div>
+      <div class="agency-tab dhd-express" data-agency="dhd-express">DHD Express</div>
+      <div class="agency-tab noest-express" data-agency="noest-express">Noest Express</div>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="wilaya-search">Rechercher une wilaya:</label>
+        <input type="text" id="wilaya-search" placeholder="Saisissez le nom de votre wilaya">
+      </div>
+    </div>
+
+    <!-- Yalidine content -->
+    <div class="agency-content active" id="yalidine-content">
+      <div class="agency-header">
+        <div class="agency-logo yalidine-logo">YALIDINE</div>
+        <div class="agency-info">
+          <h2>Yalidine - Livraison dans toute l'Algérie</h2>
+          <p>Service de livraison rapide et fiable avec plus de 200 points de retrait</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Wilaya</th>
+              <th>Livraison à domicile (DA)</th>
+              <th>Livraison au bureau (DA)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 22 common wilayas added -->
+            <tr><td>Adrar</td>                 <td class="price yalidine-price">1,100</td><td class="price yalidine-price">900</td></tr>
+            <tr><td>Chlef</td>                 <td class="price yalidine-price">800</td><td class="price yalidine-price">600</td></tr>
+            <tr><td>Laghouat</td>              <td class="price yalidine-price">950</td><td class="price yalidine-price">750</td></tr>
+            <tr><td>Batna</td>                 <td class="price yalidine-price">850</td><td class="price yalidine-price">650</td></tr>
+            <tr><td>Béjaïa</td>                <td class="price yalidine-price">850</td><td class="price yalidine-price">650</td></tr>
+            <tr><td>Béchar</td>                <td class="price yalidine-price">1,150</td><td class="price yalidine-price">950</td></tr>
+            <tr><td>Blida</td>                 <td class="price yalidine-price">700</td><td class="price yalidine-price">500</td></tr>
+            <tr><td>Boumerdès</td>             <td class="price yalidine-price">720</td><td class="price yalidine-price">520</td></tr>
+            <tr><td>Tamanrasset</td>           <td class="price yalidine-price">1,400</td><td class="price yalidine-price">1,200</td></tr>
+            <tr><td>Alger</td>                 <td class="price yalidine-price">600</td><td class="price yalidine-price">400</td></tr>
+            <tr><td>Oran</td>                  <td class="price yalidine-price">700</td><td class="price yalidine-price">500</td></tr>
+            <tr><td>Annaba</td>                <td class="price yalidine-price">850</td><td class="price yalidine-price">650</td></tr>
+            <tr><td>Jijel</td>                 <td class="price yalidine-price">800</td><td class="price yalidine-price">600</td></tr>
+            <tr><td>Skikda</td>                <td class="price yalidine-price">820</td><td class="price yalidine-price">620</td></tr>
+            <tr><td>Tizi Ouzou</td>            <td class="price yalidine-price">780</td><td class="price yalidine-price">580</td></tr>
+            <tr><td>Constantine</td>           <td class="price yalidine-price">800</td><td class="price yalidine-price">600</td></tr>
+            <tr><td>Sétif</td>                 <td class="price yalidine-price">820</td><td class="price yalidine-price">620</td></tr>
+            <tr><td>Médéa</td>                 <td class="price yalidine-price">720</td><td class="price yalidine-price">520</td></tr>
+            <tr><td>Mostaganem</td>            <td class="price yalidine-price">750</td><td class="price yalidine-price">550</td></tr>
+            <tr><td>Ouargla</td>               <td class="price yalidine-price">1,000</td><td class="price yalidine-price">800</td></tr>
+            <tr><td>Tipaza</td>                <td class="price yalidine-price">680</td><td class="price yalidine-price">480</td></tr>
+            <tr><td>Aïn Defla</td>             <td class="price yalidine-price">700</td><td class="price yalidine-price">500</td></tr>
+            <!-- you can add more wilayas later -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ZR Express content -->
+    <div class="agency-content" id="zr-express-content">
+      <div class="agency-header">
+        <div class="agency-logo zr-express-logo">Zr EXPRESS</div>
+        <div class="agency-info">
+          <h2>Zr Express - Solution de livraison innovante</h2>
+          <p>Service économique avec couverture nationale</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Wilaya</th><th>Livraison à domicile (DA)</th><th>Livraison au bureau (DA)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adrar</td>         <td class="price zr-express-price">1,050</td><td class="price zr-express-price">850</td></tr>
+            <tr><td>Chlef</td>         <td class="price zr-express-price">780</td><td class="price zr-express-price">580</td></tr>
+            <tr><td>Laghouat</td>      <td class="price zr-express-price">920</td><td class="price zr-express-price">720</td></tr>
+            <tr><td>Batna</td>         <td class="price zr-express-price">800</td><td class="price zr-express-price">600</td></tr>
+            <tr><td>Béjaïa</td>        <td class="price zr-express-price">800</td><td class="price zr-express-price">600</td></tr>
+            <tr><td>Béchar</td>        <td class="price zr-express-price">1,100</td><td class="price zr-express-price">900</td></tr>
+            <tr><td>Blida</td>         <td class="price zr-express-price">650</td><td class="price zr-express-price">450</td></tr>
+            <tr><td>Boumerdès</td>     <td class="price zr-express-price">670</td><td class="price zr-express-price">470</td></tr>
+            <tr><td>Tamanrasset</td>   <td class="price zr-express-price">1,350</td><td class="price zr-express-price">1,150</td></tr>
+            <tr><td>Alger</td>         <td class="price zr-express-price">550</td><td class="price zr-express-price">350</td></tr>
+            <tr><td>Oran</td>          <td class="price zr-express-price">650</td><td class="price zr-express-price">450</td></tr>
+            <tr><td>Annaba</td>        <td class="price zr-express-price">800</td><td class="price zr-express-price">600</td></tr>
+            <tr><td>Jijel</td>         <td class="price zr-express-price">750</td><td class="price zr-express-price">550</td></tr>
+            <tr><td>Skikda</td>        <td class="price zr-express-price">770</td><td class="price zr-express-price">570</td></tr>
+            <tr><td>Tizi Ouzou</td>    <td class="price zr-express-price">730</td><td class="price zr-express-price">530</td></tr>
+            <tr><td>Constantine</td>   <td class="price zr-express-price">750</td><td class="price zr-express-price">550</td></tr>
+            <tr><td>Sétif</td>         <td class="price zr-express-price">770</td><td class="price zr-express-price">570</td></tr>
+            <tr><td>Médéa</td>         <td class="price zr-express-price">700</td><td class="price zr-express-price">500</td></tr>
+            <tr><td>Mostaganem</td>    <td class="price zr-express-price">720</td><td class="price zr-express-price">520</td></tr>
+            <tr><td>Ouargla</td>       <td class="price zr-express-price">980</td><td class="price zr-express-price">780</td></tr>
+            <tr><td>Tipaza</td>        <td class="price zr-express-price">640</td><td class="price zr-express-price">440</td></tr>
+            <tr><td>Aïn Defla</td>     <td class="price zr-express-price">680</td><td class="price zr-express-price">480</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DHD Express content -->
+    <div class="agency-content" id="dhd-express-content">
+      <div class="agency-header">
+        <div class="agency-logo dhd-express-logo">DHD EXPRESS</div>
+        <div class="agency-info">
+          <h2>DHD Express - Livraison rapide et sécurisée</h2>
+          <p>Service premium avec suivi en temps réel</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Wilaya</th><th>Livraison à domicile (DA)</th><th>Livraison au bureau (DA)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adrar</td>         <td class="price dhd-express-price">1,200</td><td class="price dhd-express-price">1,000</td></tr>
+            <tr><td>Chlef</td>         <td class="price dhd-express-price">900</td><td class="price dhd-express-price">700</td></tr>
+            <tr><td>Laghouat</td>      <td class="price dhd-express-price">1,000</td><td class="price dhd-express-price">800</td></tr>
+            <tr><td>Batna</td>         <td class="price dhd-express-price">900</td><td class="price dhd-express-price">700</td></tr>
+            <tr><td>Béjaïa</td>        <td class="price dhd-express-price">900</td><td class="price dhd-express-price">700</td></tr>
+            <tr><td>Béchar</td>        <td class="price dhd-express-price">1,250</td><td class="price dhd-express-price">1,050</td></tr>
+            <tr><td>Blida</td>         <td class="price dhd-express-price">750</td><td class="price dhd-express-price">550</td></tr>
+            <tr><td>Boumerdès</td>     <td class="price dhd-express-price">760</td><td class="price dhd-express-price">560</td></tr>
+            <tr><td>Tamanrasset</td>   <td class="price dhd-express-price">1,500</td><td class="price dhd-express-price">1,300</td></tr>
+            <tr><td>Alger</td>         <td class="price dhd-express-price">650</td><td class="price dhd-express-price">450</td></tr>
+            <tr><td>Oran</td>          <td class="price dhd-express-price">750</td><td class="price dhd-express-price">550</td></tr>
+            <tr><td>Annaba</td>        <td class="price dhd-express-price">900</td><td class="price dhd-express-price">700</td></tr>
+            <tr><td>Jijel</td>         <td class="price dhd-express-price">880</td><td class="price dhd-express-price">680</td></tr>
+            <tr><td>Skikda</td>        <td class="price dhd-express-price">900</td><td class="price dhd-express-price">700</td></tr>
+            <tr><td>Tizi Ouzou</td>    <td class="price dhd-express-price">860</td><td class="price dhd-express-price">660</td></tr>
+            <tr><td>Constantine</td>   <td class="price dhd-express-price">850</td><td class="price dhd-express-price">650</td></tr>
+            <tr><td>Sétif</td>         <td class="price dhd-express-price">870</td><td class="price dhd-express-price">670</td></tr>
+            <tr><td>Médéa</td>         <td class="price dhd-express-price">740</td><td class="price dhd-express-price">540</td></tr>
+            <tr><td>Mostaganem</td>    <td class="price dhd-express-price">760</td><td class="price dhd-express-price">560</td></tr>
+            <tr><td>Ouargla</td>       <td class="price dhd-express-price">1,200</td><td class="price dhd-express-price">1,000</td></tr>
+            <tr><td>Aïn Defla</td>     <td class="price dhd-express-price">730</td><td class="price dhd-express-price">530</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Noest Express content -->
+    <div class="agency-content" id="noest-express-content">
+      <div class="agency-header">
+        <div class="agency-logo noest-express-logo">NOEST EXPRESS</div>
+        <div class="agency-info">
+          <h2>Noest Express - Solution logistique complète</h2>
+          <p>Service fiable avec des délais de livraison garantis</p>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr><th>Wilaya</th><th>Livraison à domicile (DA)</th><th>Livraison au bureau (DA)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adrar</td>         <td class="price noest-express-price">1,150</td><td class="price noest-express-price">950</td></tr>
+            <tr><td>Chlef</td>         <td class="price noest-express-price">820</td><td class="price noest-express-price">620</td></tr>
+            <tr><td>Laghouat</td>      <td class="price noest-express-price">980</td><td class="price noest-express-price">780</td></tr>
+            <tr><td>Batna</td>         <td class="price noest-express-price">870</td><td class="price noest-express-price">670</td></tr>
+            <tr><td>Béjaïa</td>        <td class="price noest-express-price">870</td><td class="price noest-express-price">670</td></tr>
+            <tr><td>Béchar</td>        <td class="price noest-express-price">1,200</td><td class="price noest-express-price">1,000</td></tr>
+            <tr><td>Blida</td>         <td class="price noest-express-price">720</td><td class="price noest-express-price">520</td></tr>
+            <tr><td>Boumerdès</td>     <td class="price noest-express-price">740</td><td class="price noest-express-price">540</td></tr>
+            <tr><td>Tamanrasset</td>   <td class="price noest-express-price">1,450</td><td class="price noest-express-price">1,250</td></tr>
+            <tr><td>Alger</td>         <td class="price noest-express-price">620</td><td class="price noest-express-price">420</td></tr>
+            <tr><td>Oran</td>          <td class="price noest-express-price">720</td><td class="price noest-express-price">520</td></tr>
+            <tr><td>Annaba</td>        <td class="price noest-express-price">870</td><td class="price noest-express-price">670</td></tr>
+            <tr><td>Jijel</td>         <td class="price noest-express-price">840</td><td class="price noest-express-price">640</td></tr>
+            <tr><td>Skikda</td>        <td class="price noest-express-price">860</td><td class="price noest-express-price">660</td></tr>
+            <tr><td>Tizi Ouzou</td>    <td class="price noest-express-price">820</td><td class="price noest-express-price">620</td></tr>
+            <tr><td>Constantine</td>   <td class="price noest-express-price">820</td><td class="price noest-express-price">620</td></tr>
+            <tr><td>Sétif</td>         <td class="price noest-express-price">840</td><td class="price noest-express-price">640</td></tr>
+            <tr><td>Médéa</td>         <td class="price noest-express-price">730</td><td class="price noest-express-price">530</td></tr>
+            <tr><td>Mostaganem</td>    <td class="price noest-express-price">740</td><td class="price noest-express-price">540</td></tr>
+            <tr><td>Ouargla</td>       <td class="price noest-express-price">1,100</td><td class="price noest-express-price">900</td></tr>
+            <tr><td>Aïn Defla</td>     <td class="price noest-express-price">700</td><td class="price noest-express-price">500</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Comment choisir votre agence de livraison ?</h3>
+      <ul>
+        <li><strong>Prix</strong> : Comparez les tarifs pour votre wilaya</li>
+        <li><strong>Couverture</strong> : Vérifiez que l'agence dessert votre région</li>
+        <li><strong>Délais de livraison</strong> : Certaines agences sont plus rapides que d'autres</li>
+        <li><strong>Options de livraison</strong> : À domicile ou point relais</li>
+        <li><strong>Service client</strong> : Qualité du suivi et du support</li>
+      </ul>
+      <p>Pour commander, sélectionnez simplement l'agence de votre choix lors du processus de paiement.</p>
+    </div>
+
+    <footer>
+      <p>© 2025 Innovest - Cette information est fournie à titre indicatif, les tarifs réels peuvent varier</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const agencyTabs = document.querySelectorAll('.agency-tab');
+      const agencyContents = document.querySelectorAll('.agency-content');
+
+      agencyTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const agency = this.getAttribute('data-agency');
+          agencyTabs.forEach(t => t.classList.remove('active'));
+          agencyContents.forEach(c => c.classList.remove('active'));
+          this.classList.add('active');
+          document.getElementById(`${agency}-content`).classList.add('active');
+        });
+      });
+
+      const wilayaSearch = document.getElementById('wilaya-search');
+
+      wilayaSearch.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const activeTableBody = document.querySelector('.agency-content.active table tbody');
+        if (!activeTableBody) return;
+        const rows = activeTableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+          const wilayaName = row.querySelector('td:first-child').textContent.toLowerCase();
+          row.style.display = wilayaName.includes(searchTerm) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -6,6 +6,32 @@
     <title>Innovest | Workshop Portal</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="atelier.css">
+    <style>
+        /* Style personnalisé pour la barre de défilement du formulaire seulement */
+        .register-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .register-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .register-container::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.6);
+            border-radius: 10px;
+        }
+        
+        .register-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.8);
+        }
+        
+        /* Pour Firefox - cibler seulement le formulaire */
+        .register-container {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212, 175, 55, 0.6) rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -66,16 +92,55 @@
                     <header>Workshop Registration</header>
                 </div>
                 <form id="registerForm">
-                    <div class="two-forms">
-                        <div class="input-box">
-                            <input type="text" class="input-field" placeholder="Workshop Name" required>
-                            <i class="bx bx-store"></i>
-                        </div>
-                        <div class="input-box">
-                            <input type="text" class="input-field" placeholder="Manager" required>
-                            <i class="bx bx-user"></i>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Company Name" required>
+                        <i class="bx bx-buildings"></i>
+                    </div>
+                    
+                    <div class="input-box">
+                        <div class="domains-container">
+                            <label class="domains-label">Business Domains</label>
+                            <div class="domains-grid">
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-couture" name="domains" value="couture">
+                                    <label for="domain-couture">Sewing</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-accessoires" name="domains" value="accessoires">
+                                    <label for="domain-accessoires">Accessories</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-electromenager" name="domains" value="electromenager">
+                                    <label for="domain-electromenager">Home Appliances</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-makeup" name="domains" value="makeup">
+                                    <label for="domain-makeup">Make-up</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-phone" name="domains" value="phone">
+                                    <label for="domain-phone">Phone & Accessories</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-decoration" name="domains" value="decoration">
+                                    <label for="domain-decoration">Decoration</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-art" name="domains" value="art">
+                                    <label for="domain-art">Art & Craft</label>
+                                </div>
+                                <div class="domain-option">
+                                    <input type="checkbox" id="domain-sports" name="domains" value="sports">
+                                    <label for="domain-sports">Sports Equipment</label>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" class="input-field" placeholder="Other domain (please specify)" id="other-domain">
+                                <i class="bx bx-edit"></i>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="input-box">
                         <input type="email" class="input-field" placeholder="Email" required>
                         <i class="bx bx-envelope"></i>
@@ -83,6 +148,10 @@
                     <div class="input-box">
                         <input type="tel" class="input-field" placeholder="Phone" required>
                         <i class="bx bx-phone"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Address" required>
+                        <i class="bx bx-map"></i>
                     </div>
                     <div class="two-forms">
                         <div class="input-box">
@@ -95,14 +164,13 @@
                         </div>
                     </div>
                     <div class="input-box">
-                        <select class="input-field" required>
-                            <option value="" disabled selected>Activity Sector</option>
-                            <option value="craft">Craft</option>
-                            <option value="food">Food</option>
-                            <option value="textile">Textile</option>
-                            <option value="technology">Technology</option>
-                        </select>
-                        <i class="bx bx-buildings"></i>
+                        <div class="file-upload">
+                            <label for="kbis-file" class="file-label">
+                                <i class="bx bx-file"></i>
+                                <span id="file-name">Upload KBIS (PDF)</span>
+                            </label>
+                            <input type="file" id="kbis-file" accept=".pdf" required style="display: none;">
+                        </div>
                     </div>
                     <div class="input-box">
                         <button type="submit" class="submit">Register</button>
@@ -111,7 +179,7 @@
                 <div class="two-col">
                     <div class="one">
                         <input type="checkbox" id="terms-check" required>
-                        <label for="terms-check"> I accept the <a href="#">terms</a></label>
+                        <label for="terms-check"> I accept the <a href="#">terms and conditions</a></label>
                     </div>
                 </div>
             </div>
@@ -130,6 +198,8 @@
     const registerForm = document.getElementById('register');
     const loginFormElement = document.getElementById('loginForm');
     const registerFormElement = document.getElementById('registerForm');
+    const kbisFileInput = document.getElementById('kbis-file');
+    const fileNameSpan = document.getElementById('file-name');
 
     // Toggle mobile menu
     navMenuBtn.addEventListener('click', toggleMenu);
@@ -143,6 +213,15 @@
     // Form submissions
     loginFormElement.addEventListener('submit', validateLoginForm);
     registerFormElement.addEventListener('submit', validateRegisterForm);
+
+    // KBIS file upload display
+    kbisFileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            fileNameSpan.textContent = this.files[0].name;
+        } else {
+            fileNameSpan.textContent = "Upload KBIS (PDF)";
+        }
+    });
 
     // Initialize with login form shown
     showLoginForm();
@@ -194,33 +273,68 @@
         const inputs = registerForm.querySelectorAll('.input-field[required]');
         let isValid = true;
         
+        // Reset error styles
+        inputs.forEach(input => {
+            input.style.background = "rgba(255, 255, 255, 0.2)";
+        });
+        
+        // Check required fields
         inputs.forEach(input => {
             if (!input.value) {
                 input.style.background = "rgba(255, 100, 100, 0.2)";
                 isValid = false;
-            } else {
-                input.style.background = "rgba(255, 255, 255, 0.2)";
             }
         });
 
-        const password = registerForm.querySelectorAll('input[type="password"]')[0].value;
-        const confirmPassword = registerForm.querySelectorAll('input[type="password"]')[1].value;
+        // Check if at least one domain is selected or other domain is specified
+        const domainCheckboxes = registerForm.querySelectorAll('input[name="domains"]:checked');
+        const otherDomain = document.getElementById('other-domain').value;
         
-        if (password !== confirmPassword) {
-            alert("Passwords don't match!");
+        if (domainCheckboxes.length === 0 && !otherDomain) {
+            alert("Please select at least one business domain or specify another!");
             isValid = false;
         }
 
+        // Check for prohibited domains
+        const prohibitedDomains = ["weapons", "drugs", "adult content", "gambling"];
+        const otherDomainValue = document.getElementById('other-domain').value.toLowerCase();
+        
+        if (prohibitedDomains.some(domain => otherDomainValue.includes(domain))) {
+            alert("The specified domain is not allowed. Please choose a different business domain.");
+            document.getElementById('other-domain').style.background = "rgba(255, 100, 100, 0.2)";
+            isValid = false;
+        }
+
+        // Check password match
+        const passwordInputs = registerForm.querySelectorAll('input[type="password"]');
+        if (passwordInputs[0].value !== passwordInputs[1].value) {
+            alert("Passwords do not match!");
+            passwordInputs[0].style.background = "rgba(255, 100, 100, 0.2)";
+            passwordInputs[1].style.background = "rgba(255, 100, 100, 0.2)";
+            isValid = false;
+        }
+
+        // Check KBIS file
+        if (!kbisFileInput.files.length) {
+            alert("Please upload your KBIS!");
+            isValid = false;
+        } else if (kbisFileInput.files[0].type !== 'application/pdf') {
+            alert("KBIS file must be in PDF format!");
+            isValid = false;
+        }
+
+        // Check terms
         const termsChecked = document.getElementById('terms-check').checked;
         if (!termsChecked) {
-            alert("You must accept the terms!");
+            alert("You must accept the terms and conditions!");
             isValid = false;
         }
 
         if (isValid) {
-            alert("Registration successful! You can now login.");
+            alert("Registration successful! You can now log in.");
             showLoginForm();
             registerFormElement.reset();
+            fileNameSpan.textContent = "Upload KBIS (PDF)";
         }
     }
 });
@@ -376,7 +490,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 512px;
-    height: 520px;
+    height: 650px;
     overflow: hidden;
     z-index: 2;
     margin-top: 50px;
@@ -389,7 +503,6 @@ body {
     flex-direction: column;
     padding: 30px;
     transition: all 0.5s ease-in-out;
-   
     border-radius: 10px;
 }
 
@@ -403,6 +516,9 @@ body {
     right: -520px;
     opacity: 0;
     visibility: hidden;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .top span {
@@ -510,19 +626,68 @@ header {
     text-decoration: underline;
 }
 
-/* Select Field Style */
-.input-box select.input-field {
-    appearance: none;
-    -webkit-appearance: none;
-    padding-left: 45px;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat;
-    background-position: right 15px center;
-    background-size: 20px;
+/* Domains Selection Styles */
+.domains-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-.input-box select.input-field option {
-    background: #333;
+.domains-label {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.domains-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.domain-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.domain-option input[type="checkbox"] {
+    accent-color: #d4af37;
+}
+
+.domain-option label {
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* File Upload Styles */
+.file-upload {
+    margin-top: 10px;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    height: 50px;
+    padding: 0 15px 0 45px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.file-label:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.file-label i {
+    position: absolute;
+    left: 17px;
     color: #fff;
 }
 
@@ -582,6 +747,10 @@ header {
     .two-forms {
         flex-direction: column;
         gap: 20px;
+    }
+    
+    .domains-grid {
+        grid-template-columns: 1fr;
     }
 }
 
